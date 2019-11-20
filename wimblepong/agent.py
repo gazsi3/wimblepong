@@ -23,4 +23,12 @@ class Agent(object):
             action = self.env.MOVE_DOWN  # Down
 
         return action
+
+    def load_model(self):
+        # tbd
+        return
+
+    def reset(self):
+        # tbd
+        return
     
