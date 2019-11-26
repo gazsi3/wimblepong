@@ -1,4 +1,3 @@
-
 import numpy as np
 import pickle
 import matplotlib
@@ -13,6 +12,7 @@ def sigmoid(x):
 
 def prepro(I):
     """ prepro 210x160x3 uint8 frame into 6400 (80x80) 1D float vector """
+    # player = self.env.player1 if self.player_id == 1 else self.env.player2
     I = I[::2,::2,0] # downsample by factor of 2
     I[I == 43] = 0 # erase background (background type 1)
     I[I != 0] = 1 # everything else (paddles, ball) just set to 1
@@ -28,7 +28,7 @@ class Agent(object):
         self.init_model()
         self.name = "KarpathyRaw"
         self.rewards = []
-        self.model_file = "save_100k.p"
+        self.model_file = "../save_zero.p"
         self.reward_file = "running_rewards.p"
         self.learning_rate = 1e-4
         self.gamma = 0.99
@@ -41,6 +41,7 @@ class Agent(object):
         self.grad_buffer = {}
         self.rmsprop_cache = {}
         self.plot_rewards = []
+        self.env = []
 
     def add_reward(self,reward):
         self.reward_sum += reward
@@ -83,17 +84,19 @@ class Agent(object):
         #print(self.running_reward)
         self.plot_rewards.append(self.running_reward)
 
-        if self.episode_number % 50 == 0:
+        if self.episode_number % 1000 == 0:
             pickle.dump(self.model, open(self.model_file, 'wb'))
             print("weights saved")
-            pickle.dump(self.plot_rewards, open(self.reward_file, 'wb'))
 
+            plt.plot(self.plot_rewards, 'b')
+            pickle.dump(self.plot_rewards, open(self.reward_file, 'wb'))
             print ('running mean: %f' % (self.running_reward))
+
         
         if self.episode_number % 100 == 0:
 
             #print ('resetting env. episode reward total was %f. running mean: %f' % (self.reward_sum, self.running_reward))
-           # plt.plot(self.plot_rewards, 'b')
+            plt.plot(self.plot_rewards, 'b')
             plt.savefig('./plots/running_rewards_' + str(self.episode_number) + '.png')
 
         self.reward_sum = 0
@@ -148,7 +151,7 @@ class Agent(object):
         return {'W1':dW1, 'W2':dW2}
 
     def get_action(self, observation):
-        # preprocess the observation, set input to network to be difference image
+        print(self.env.ball.x)        # preprocess the observation, set input to network to be difference image
         cur_x = prepro(observation)
         x = cur_x - self.prev_x if self.prev_x is not None else np.zeros(self.D)
         self.prev_x = cur_x
@@ -168,4 +171,7 @@ class Agent(object):
     def reset(self):
         # Reset previous observation
         self.prev_x = None
+
+    def set_environment(self, env):
+        self.env = env
 
