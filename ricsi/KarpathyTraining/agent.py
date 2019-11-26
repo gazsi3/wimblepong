@@ -28,7 +28,7 @@ class Agent(object):
         self.init_model()
         self.name = "KarpathyRaw"
         self.rewards = []
-        self.model_file = "../save_zero.p"
+        self.model_file = "save_100k.p"
         self.reward_file = "running_rewards.p"
         self.learning_rate = 1e-4
         self.gamma = 0.99
