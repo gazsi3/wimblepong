@@ -36,7 +36,7 @@ class Agent(object):
         self.xs,self.hs,self.dlogps,self.drs = [],[],[],[]
         self.running_reward = None
         self.reward_sum = 0
-        self.episode_number = 0
+        self.episode_number = 107000
         self.batch_size = 10 # every how many episodes to do a param update?
         self.grad_buffer = {}
         self.rmsprop_cache = {}
@@ -112,7 +112,7 @@ class Agent(object):
             self.model = pickle.load(input_file)
 
         with open(('../' + self.reward_file), "rb") as input_file2:
-            self.plot_rewards = pickle.load(input_file2)
+           self.plot_rewards = pickle.load(input_file2)
         
         self.grad_buffer = { k : np.zeros_like(v) for k,v in self.model.items() } # update buffers that add up gradients over a batch
         self.rmsprop_cache = { k : np.zeros_like(v) for k,v in self.model.items() } # rmsprop memory
