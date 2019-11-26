@@ -1,5 +1,9 @@
+
 import numpy as np
 import pickle
+import matplotlib
+# Force matplotlib to not use any Xwindows backend.
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 
@@ -86,10 +90,10 @@ class Agent(object):
 
             print ('running mean: %f' % (self.running_reward))
         
-        if self.episode_number % 1000 == 0:
+        if self.episode_number % 100 == 0:
 
             #print ('resetting env. episode reward total was %f. running mean: %f' % (self.reward_sum, self.running_reward))
-            plt.plot(self.plot_rewards, 'b')
+           # plt.plot(self.plot_rewards, 'b')
             plt.savefig('./plots/running_rewards_' + str(self.episode_number) + '.png')
 
         self.reward_sum = 0
