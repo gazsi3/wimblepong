@@ -24,7 +24,8 @@ class Agent(object):
         self.init_model()
         self.name = "KarpathyRaw"
         self.rewards = []
-        self.model_file = "../save_zero.p"
+        self.model_file = "save_100k.p"
+        self.reward_file = "running_rewards.p"
         self.learning_rate = 1e-4
         self.gamma = 0.99
         self.decay_rate = 0.99 # decay factor for RMSProp leaky sum of grad^2
@@ -78,13 +79,12 @@ class Agent(object):
         #print(self.running_reward)
         self.plot_rewards.append(self.running_reward)
 
-        if self.episode_number % 100 == 0:
+        if self.episode_number % 50 == 0:
             pickle.dump(self.model, open(self.model_file, 'wb'))
             print("weights saved")
+            pickle.dump(self.plot_rewards, open(self.reward_file, 'wb'))
 
-            plt.plot(self.plot_rewards, 'b')
             print ('running mean: %f' % (self.running_reward))
-
         
         if self.episode_number % 1000 == 0:
 
@@ -101,7 +101,11 @@ class Agent(object):
         return self.name
 
     def load_model(self):
-        self.model = pickle.load(open(self.model_file, 'rb'))
+        with open(('../' + self.model_file), "rb") as input_file:
+            self.model = pickle.load(input_file)
+
+        with open(('../' + self.reward_file), "rb") as input_file2:
+            self.plot_rewards = pickle.load(input_file2)
         
         self.grad_buffer = { k : np.zeros_like(v) for k,v in self.model.items() } # update buffers that add up gradients over a batch
         self.rmsprop_cache = { k : np.zeros_like(v) for k,v in self.model.items() } # rmsprop memory
