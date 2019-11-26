@@ -93,7 +93,7 @@ class Agent(object):
             print ('running mean: %f' % (self.running_reward))
 
         
-        if self.episode_number % 100 == 0:
+        if self.episode_number % 10000 == 0:
 
             #print ('resetting env. episode reward total was %f. running mean: %f' % (self.reward_sum, self.running_reward))
             plt.plot(self.plot_rewards, 'b')
@@ -151,7 +151,7 @@ class Agent(object):
         return {'W1':dW1, 'W2':dW2}
 
     def get_action(self, observation):
-        print(self.env.ball.x)        # preprocess the observation, set input to network to be difference image
+        # print(self.env.ball.x)        # preprocess the observation, set input to network to be difference image
         cur_x = prepro(observation)
         x = cur_x - self.prev_x if self.prev_x is not None else np.zeros(self.D)
         self.prev_x = cur_x

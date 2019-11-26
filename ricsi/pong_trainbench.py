@@ -15,8 +15,8 @@ class PongTrainbench(object):
         self.me = 0
 
     def init_players(self, player1, player2=None):
-        self.player1 = player1()
-        self.player1.set_environment(self.env)
+        self.player1 = player1
+        # self.player1.set_environment(self.env)
         if player2:
             self.player2 = player2
         else:
