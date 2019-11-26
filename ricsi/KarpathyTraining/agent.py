@@ -86,7 +86,7 @@ class Agent(object):
 
         if self.episode_number % 1000 == 0:
             pickle.dump(self.model, open(self.model_file, 'wb'))
-            print("weights saved", episode_number)
+            print("weights saved", self.episode_number)
 
             plt.plot(self.plot_rewards, 'b')
             pickle.dump(self.plot_rewards, open(self.reward_file, 'wb'))
