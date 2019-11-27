@@ -22,13 +22,14 @@ def prepro(I):
 class Agent(object):
     def __init__(self):
         self.H = 200  # number of hidden layer neurons
-        self.D = 100 * 100  # input dimensionality: 100x100 grid
+        # self.D = 100 * 100  # input dimensionality: 100x100 grid
+        self.D = 6  # input dimensionality: 100x100 grid
         self.prev_x = None
         self.model = {}
         self.init_model()
         self.name = "KarpathyRaw"
         self.rewards = []
-        self.model_file = "save_100k.p"
+        self.model_file = "start.p"
         self.reward_file = "running_rewards.p"
         self.learning_rate = 1e-4
         self.gamma = 0.99
@@ -120,7 +121,10 @@ class Agent(object):
     def init_model(self):
         self.model.clear()
         self.model['W1'] = np.random.randn(self.H, self.D) / np.sqrt(self.D)
+        # GOOD print("1: ", self.model['W1'].shape)
         self.model['W2'] = np.random.randn(self.H) / np.sqrt(self.H)
+        # GOOD print("1: ", self.model['W1'].shape)
+
 
         self.grad_buffer = { k : np.zeros_like(v) for k,v in self.model.items() } # update buffers that add up gradients over a batch
         self.rmsprop_cache = { k : np.zeros_like(v) for k,v in self.model.items() } # rmsprop memory
@@ -140,6 +144,9 @@ class Agent(object):
         h[h < 0] = 0  # ReLU nonlinearity
         logp = np.dot(self.model['W2'], h)
         p = sigmoid(logp)
+        # pickle.dump(self.model, open(self.model_file, 'wb'))
+        # print("weights saved", self.episode_number)
+
         return p, h  # return probability of taking action 2, and hidden state
 
     def policy_backward(self, eph, epx, epdlogp):
@@ -151,9 +158,16 @@ class Agent(object):
         return {'W1':dW1, 'W2':dW2}
 
     def get_action(self, observation):
-        print(self.env.ball.x, self.env.ball.y, self.env.player1.y)        # preprocess the observation, set input to network to be difference image
-        cur_x = prepro(observation)
+        # this all should not be needed
+        x_ball, y_ball, y_player1, y_player2 = self.env.ball.x, self.env.ball.y, self.env.player1.y, self.env.player2.y      # preprocess the observation, set input to network to be difference image
+        x_dot = x_ball - self.prev_x[3] if self.prev_x is not None else 0
+        y_dot = y_ball - self.prev_x[4] if self.prev_x is not None else 0
+        param = [x_ball, y_ball, x_dot, y_dot, y_player1, y_player2]    # observation should be same as param
+
+        # cur_x = prepro(observation)
+        cur_x = np.array(param)
         x = cur_x - self.prev_x if self.prev_x is not None else np.zeros(self.D)
+        
         self.prev_x = cur_x
 
         # forward the policy network and sample an action from the returned probability
