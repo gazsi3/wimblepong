@@ -6,6 +6,12 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 
+import torch
+from torch.autograd import Variable
+import torch.nn.functional as F
+import torch.utils.data as Data
+
+
 def sigmoid(x):
     return 1.0 / (1.0 + np.exp(-x))  # sigmoid "squashing" function to interval [0,1]
 
@@ -23,7 +29,7 @@ class Agent(object):
     def __init__(self):
         self.H = 200  # number of hidden layer neurons
         # self.D = 100 * 100  # input dimensionality: 100x100 grid
-        self.D = 6  # input dimensionality: 100x100 grid
+        self.D = 8  # input dimensionality: 100x100 grid
         self.prev_x = None
         self.model = {}
         self.init_model()
@@ -43,6 +49,14 @@ class Agent(object):
         self.rmsprop_cache = {}
         self.plot_rewards = []
         self.env = []
+
+        #supervised model params
+        self.input_dim = 10000
+        self.output_dim = 4
+        self.net = {}
+        self.sup_model_file = "./supervised_model.pth"
+        self.optimizer = None
+        self.loss_func = None
 
     def add_reward(self,reward):
         self.reward_sum += reward
@@ -109,14 +123,41 @@ class Agent(object):
         return self.name
 
     def load_model(self):
-        with open(('../' + self.model_file), "rb") as input_file:
-            self.model = pickle.load(input_file)
 
-        with open(('../' + self.reward_file), "rb") as input_file2:
-           self.plot_rewards = pickle.load(input_file2)
+        try:
+            with open(('../' + self.model_file), "rb") as input_file:
+                self.model = pickle.load(input_file)
+        except (OSError, IOError) as e:
+            self.init_model()
+            with open(('../' + self.model_file), "wb") as output_file:
+                pickle.dump(self.model, output_file)
+
+        try:
+            with open(('../' + self.reward_file), "rb") as input_file:
+                self.plot_rewards = pickle.load(input_file)
+        except (OSError, IOError) as e:
+            with open(('../' + self.reward_file), "wb") as output_file:
+                pickle.dump(self.plot_rewards, output_file)
         
         self.grad_buffer = { k : np.zeros_like(v) for k,v in self.model.items() } # update buffers that add up gradients over a batch
         self.rmsprop_cache = { k : np.zeros_like(v) for k,v in self.model.items() } # rmsprop memory
+
+
+        # another way to define a network
+        self.net = torch.nn.Sequential(
+                torch.nn.Linear(self.input_dim, 200),
+                torch.nn.LeakyReLU(),
+                torch.nn.Linear(200, 100),
+                torch.nn.LeakyReLU(),
+                torch.nn.Linear(100, self.output_dim),
+            )
+
+        self.net.load_state_dict(torch.load('../' + self.sup_model_file))
+
+        self.net.eval()
+
+        self.optimizer = torch.optim.Adam(self.net.parameters(), lr=0.01)
+        self.loss_func = torch.nn.MSELoss()  # this is for regression mean squared loss    
 
     def init_model(self):
         self.model.clear()
@@ -124,7 +165,6 @@ class Agent(object):
         # GOOD print("1: ", self.model['W1'].shape)
         self.model['W2'] = np.random.randn(self.H) / np.sqrt(self.H)
         # GOOD print("1: ", self.model['W1'].shape)
-
 
         self.grad_buffer = { k : np.zeros_like(v) for k,v in self.model.items() } # update buffers that add up gradients over a batch
         self.rmsprop_cache = { k : np.zeros_like(v) for k,v in self.model.items() } # rmsprop memory
@@ -144,6 +184,7 @@ class Agent(object):
         h[h < 0] = 0  # ReLU nonlinearity
         logp = np.dot(self.model['W2'], h)
         p = sigmoid(logp)
+
         # pickle.dump(self.model, open(self.model_file, 'wb'))
         # print("weights saved", self.episode_number)
 
@@ -158,19 +199,29 @@ class Agent(object):
         return {'W1':dW1, 'W2':dW2}
 
     def get_action(self, observation):
-        # this all should not be needed
-        x_ball, y_ball, y_player1, y_player2 = self.env.ball.x, self.env.ball.y, self.env.player1.y, self.env.player2.y      # preprocess the observation, set input to network to be difference image
-        x_dot = x_ball - self.prev_x[3] if self.prev_x is not None else 0
-        y_dot = y_ball - self.prev_x[4] if self.prev_x is not None else 0
-        param = [x_ball, y_ball, x_dot, y_dot, y_player1, y_player2]    # observation should be same as param
 
-        # cur_x = prepro(observation)
-        cur_x = np.array(param)
-        x = cur_x - self.prev_x if self.prev_x is not None else np.zeros(self.D)
-        
-        self.prev_x = cur_x
+        my_obs = prepro(observation)
+        my_obs = np.array(my_obs)
+        my_obs = torch.Tensor(my_obs)
+
+        prediction = self.net(my_obs).detach().numpy()
+
+        #print(prediction)
+
+        speeds = prediction - self.prev_x if self.prev_x is not None else np.zeros(int(self.D/2))
+
+        #print(speeds)
+
+        x = np.concatenate((prediction, speeds))
+
+        #print(x)
+
+        #print("=========")
+
+        self.prev_x = prediction
 
         # forward the policy network and sample an action from the returned probability
+
         aprob, h = self.policy_forward(x)
         action = 1 if np.random.uniform() < aprob else 2  # roll the dice!
         
