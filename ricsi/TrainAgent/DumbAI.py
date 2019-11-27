@@ -13,8 +13,7 @@ class SimpleAi(object):
         # only in straight lines
         self.bpe = 4                
         self.name = "SimpleAI"
-        self.touch = False
-        self.episode = 1
+        selr.touch = False
 
     def get_name(self):
         """
@@ -37,7 +36,7 @@ class SimpleAi(object):
         # Compute the difference in position and try to minimize it
         y_diff = my_y - ball_y
         
-        if not self.touch:
+        if !touch:
             if abs(y_diff) < 2:
                 action = 0  # Stay
             else:
@@ -46,23 +45,17 @@ class SimpleAi(object):
                 else:
                     action = self.env.MOVE_DOWN  # Down
         else:
-            if abs(y_diff) < 2:
-                action = 0  # Stay
             if y_diff > 0:
                 action = self.env.MOVE_DOWN  
             else:
                 action = self.env.MOVE_UP 
 
-        if self.env.ball.last_touch == 2:
-            self.touch = True
+        print(self.env)
 
         return action
 
     def reset(self):
         # Nothing to done for now...
-        self.touch = False
-        # print("finished")
         return
 
-    
 
