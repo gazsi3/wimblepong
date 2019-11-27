@@ -6,6 +6,7 @@ class Agent(object):
     def __init__(self):
         self.env = env = gym.make("WimblepongVisualMultiplayer-v0")
         self.name = "buzibogyo"
+        self.last_action = 0
 
     def prepro(self,I):
         """ prepro 200x200x3 uint8 frame into 10000 (10x10) 1D float vector """
@@ -23,12 +24,14 @@ class Agent(object):
         #prepro_ob = self.prepro(ob)
         #print(ob.shape, prepro_ob.shape)
 
-        action = 0
+        action = self.last_action # Same as last one
         ac = np.random.rand(1)
-        if(ac>0.2):
+        if(ac>0.3):
             action = self.env.MOVE_UP  # Up
-        if(ac>0.6):
+        if(ac>0.65):
             action = self.env.MOVE_DOWN  # Down
+
+        self.last_action = action
 
         return action
 
