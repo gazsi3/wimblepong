@@ -16,7 +16,7 @@ class PongTrainbench(object):
 
     def init_players(self, player1, player2=None):
         self.player1 = player1
-        # self.player1.set_environment(self.env)
+        self.player1.set_environment(self.env)
         if player2:
             self.player2 = player2
         else:
@@ -68,6 +68,7 @@ class PongTrainbench(object):
                     self.player1.train(rew1)
                 else:
                     self.player2.train(rew2)
+                
 
                 if rew1 > 0:
                     self.wins1 += 1
