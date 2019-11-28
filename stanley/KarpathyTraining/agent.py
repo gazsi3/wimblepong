@@ -43,7 +43,7 @@ class Agent(object):
         self.xs,self.hs,self.dlogps,self.drs = [],[],[],[]
         self.running_reward = None
         self.reward_sum = 0
-        self.episode_number = 107000
+        self.episode_number = 0
         self.batch_size = 10 # every how many episodes to do a param update?
         self.grad_buffer = {}
         self.rmsprop_cache = {}
@@ -99,16 +99,16 @@ class Agent(object):
         #print(self.running_reward)
         self.plot_rewards.append(self.running_reward)
 
-        if self.episode_number % 1000 == 0:
+        if self.episode_number % 500 == 0:
             pickle.dump(self.model, open(self.model_file, 'wb'))
             print("weights saved", self.episode_number)
 
-            plt.plot(self.plot_rewards, 'b')
+            #plt.plot(self.plot_rewards, 'b')
             pickle.dump(self.plot_rewards, open(self.reward_file, 'wb'))
             print ('running mean: %f' % (self.running_reward))
 
         
-        if self.episode_number % 10000 == 0:
+        if self.episode_number % 1000 == 0:
 
             #print ('resetting env. episode reward total was %f. running mean: %f' % (self.reward_sum, self.running_reward))
             plt.plot(self.plot_rewards, 'b')

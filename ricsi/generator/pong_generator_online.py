@@ -173,7 +173,7 @@ class PongTrainbench(object):
 
         games = 0
         running_loss = 0
-        print_freq = 100
+        print_freq = 1
 
         while games <= (no_games):
 
