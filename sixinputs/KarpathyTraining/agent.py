@@ -99,7 +99,7 @@ class Agent(object):
         #print(self.running_reward)
         self.plot_rewards.append(self.running_reward)
 
-        if self.episode_number % 10 == 0:
+        if self.episode_number % 500 == 0:
             pickle.dump(self.model, open(self.model_file, 'wb'))
             print("weights saved", self.episode_number)
 
