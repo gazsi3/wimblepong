@@ -229,14 +229,16 @@ class Agent(object):
         my_obs = np.array(my_obs)
         my_obs = torch.Tensor(my_obs).to(self.train_device)
 
-        prediction = self.net(my_obs).to(self.train_device).detach().numpy()
+        prediction = self.net(my_obs).to(self.train_device)
+        prediction = prediction.cpu()
+        prediction = prediction.detach().numpy()
         prediction = np.delete(prediction,1)
 
         #print(prediction)
 
         speeds = prediction - self.prev_x if self.prev_x is not None else np.zeros(int(self.D/2))
 
-        #print(speeds)
+        #print(speeds)k45UsU(ds/tk/[K9
 
         x = np.concatenate((prediction, speeds))
 
