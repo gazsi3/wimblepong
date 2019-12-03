@@ -113,7 +113,7 @@ class Agent(object):
 
             #print ('resetting env. episode reward total was %f. running mean: %f' % (self.reward_sum, self.running_reward))
             y = np.array(self.plot_rewards)
-            start = 50000
+            start = 0
             grouping = 500
 
             y = y[start:]
@@ -224,9 +224,6 @@ class Agent(object):
         return {'W1':dW1, 'W2':dW2}
 
     def get_action(self, observation):
-
-        pickle.dump(self.model, open(self.model_file, 'wb'))
-
         my_obs = prepro(observation)
         my_obs = np.array(my_obs)
         my_obs = torch.Tensor(my_obs).to(self.train_device)
