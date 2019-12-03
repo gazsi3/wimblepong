@@ -206,7 +206,7 @@ class Agent(object):
         return discounted_r
 
     def policy_forward(self, x):
-        h = torch.from_numpy(np.dot(self.model['W1'], x)).to(self.train_device)
+        h = np.dot(self.model['W1'], x)
         h[h < 0] = 0  # ReLU nonlinearity
         logp = np.dot(self.model['W2'], h)
         # p = sigmoid(logp)
