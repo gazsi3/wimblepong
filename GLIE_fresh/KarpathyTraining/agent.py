@@ -37,7 +37,7 @@ class Agent(object):
         self.rewards = []
         self.model_file = "fresh_glie.p"
         self.reward_file = "running_rewards.p"
-        self.learning_rate = 1e-4
+        self.learning_rate = 1e-3 #suggested in git from blog
         self.gamma = 0.99
         self.decay_rate = 0.99 # decay factor for RMSProp leaky sum of grad^2
         self.xs,self.hs,self.dlogps,self.drs = [],[],[],[]
@@ -49,9 +49,9 @@ class Agent(object):
         self.rmsprop_cache = {}
         self.plot_rewards = []
         self.env = []
-        self.epsilon = 0.5
-        self.alpha = 20000
-        self.min_epsilon = 0.05
+        self.epsilon = 1.0
+        self.alpha = 2e5
+        self.min_epsilon = 0.1
         self.train_device = "cuda" if torch.cuda.is_available() else "cpu"
 
 
@@ -224,7 +224,9 @@ class Agent(object):
         dW1 = np.dot(dh.T, epx)
         return {'W1':dW1, 'W2':dW2}
 
-    def get_action(self, observation):
+    def get_action(self, observation):        
+        # pickle.dump(self.model, open(self.model_file, 'wb'))
+        
         my_obs = prepro(observation)
         my_obs = np.array(my_obs)
         my_obs = torch.Tensor(my_obs).to(self.train_device)
