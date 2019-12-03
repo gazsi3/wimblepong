@@ -49,6 +49,10 @@ class Agent(object):
         self.rmsprop_cache = {}
         self.plot_rewards = []
         self.env = []
+        self.epsilon = 1
+        self.alpha = 2000
+        self.train_device = "cuda" if torch.cuda.is_available() else "cpu"
+
 
         #supervised model params
         self.input_dim = 10000
@@ -171,14 +175,14 @@ class Agent(object):
                 torch.nn.Linear(200, 100),
                 torch.nn.LeakyReLU(),
                 torch.nn.Linear(100, self.output_dim),
-            )
+            ).to(self.train_device)
 
         self.net.load_state_dict(torch.load('../' + self.sup_model_file))
 
-        self.net.eval()
+        self.net.eval().to(self.train_device)
 
         self.optimizer = torch.optim.Adam(self.net.parameters(), lr=0.01)
-        self.loss_func = torch.nn.MSELoss()  # this is for regression mean squared loss    
+        self.loss_func = torch.nn.MSELoss().to(self.train_device)  # this is for regression mean squared loss    
 
     def init_model(self):
         self.model.clear()
@@ -223,9 +227,9 @@ class Agent(object):
 
         my_obs = prepro(observation)
         my_obs = np.array(my_obs)
-        my_obs = torch.Tensor(my_obs)
+        my_obs = torch.Tensor(my_obs).to(self.train_device)
 
-        prediction = self.net(my_obs).detach().numpy()
+        prediction = self.net(my_obs).to(self.train_device).detach().numpy()
         prediction = np.delete(prediction,1)
 
         #print(prediction)
@@ -245,7 +249,12 @@ class Agent(object):
         # forward the policy network and sample an action from the returned probability
 
         aprob, h = self.policy_forward(x)
-        action = 1 if np.random.uniform() < aprob else 2  # roll the dice!
+        #action = 1 if np.random.uniform() < aprob else 2  # roll the dice
+        self.epsilon = self.alpha / (self.alpha + self.episode_number)
+        if np.random.random() < self.epsilon:
+            action = 1 + int(np.random.rand() * 2)
+        else:
+            action = 1 if 0.5 < aprob else 2
         
         self.xs.append(x)
         self.hs.append(h)
