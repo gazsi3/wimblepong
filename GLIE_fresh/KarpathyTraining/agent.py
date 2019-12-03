@@ -49,8 +49,9 @@ class Agent(object):
         self.rmsprop_cache = {}
         self.plot_rewards = []
         self.env = []
-        self.epsilon = 1
-        self.alpha = 2000
+        self.epsilon = 0.5
+        self.alpha = 20000
+        self.min_epsilon = 0.05
         self.train_device = "cuda" if torch.cuda.is_available() else "cpu"
 
 
@@ -252,7 +253,9 @@ class Agent(object):
         aprob, h = self.policy_forward(x)
         #action = 1 if np.random.uniform() < aprob else 2  # roll the dice
         self.epsilon = self.alpha / (self.alpha + self.episode_number)
-        if np.random.random() < self.epsilon:
+        if self.epsilon < self.min_epsilon and np.random.random() < self.min_epsilon:
+            action = 1 + int(np.random.rand() * 2)
+        elif np.random.random() < self.epsilon:
             action = 1 + int(np.random.rand() * 2)
         else:
             action = 1 if 0.5 < aprob else 2
