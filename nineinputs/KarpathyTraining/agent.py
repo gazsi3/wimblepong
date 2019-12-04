@@ -226,7 +226,6 @@ class Agent(object):
 
     def get_action(self, observation):        
         # pickle.dump(self.model, open(self.model_file, 'wb'))
-        # self.load_model()
         
         my_obs = prepro(observation)
         my_obs = np.array(my_obs)
@@ -257,13 +256,13 @@ class Agent(object):
 
         aprob, h = self.policy_forward(x)
         #action = 1 if np.random.uniform() < aprob else 2  # roll the dice
-        self.epsilon = self.alpha / (self.alpha + self.episode_number)
-        if self.epsilon < self.min_epsilon and np.random.random() < self.min_epsilon:
-            action = 1 + int(np.random.rand() * 2)
-        elif np.random.random() < self.epsilon:
-            action = 1 + int(np.random.rand() * 2)
-        else:
-            action = 1 if 0.5 > aprob else 2
+        # self.epsilon = self.alpha / (self.alpha + self.episode_number)
+        # if self.epsilon < self.min_epsilon and np.random.random() < self.min_epsilon:
+        #     action = 1 + int(np.random.rand() * 2)
+        # elif np.random.random() < self.epsilon:
+        #     action = 1 + int(np.random.rand() * 2)
+        # else:
+        action = 1 if np.random.uniform() > aprob else 2  # roll the dice!
         
         self.xs.append(x)
         self.hs.append(h)
