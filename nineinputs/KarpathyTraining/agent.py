@@ -261,7 +261,7 @@ class Agent(object):
         # elif np.random.random() < self.epsilon:
         #     action = 1 + int(np.random.rand() * 2)
         # else:
-        action = 1 if np.random.uniform() > aprob else 2  # roll the dice!
+        action = 1 if np.random.uniform() < aprob else 2  # roll the dice!
         
         self.xs.append(x)
         self.hs.append(h)
