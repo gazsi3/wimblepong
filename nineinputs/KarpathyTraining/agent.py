@@ -52,6 +52,7 @@ class Agent(object):
         self.env = []
         self.epsilon = 1.0
         self.train_device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.first = True
 
 
         #supervised model params
@@ -223,9 +224,32 @@ class Agent(object):
         dW1 = np.dot(dh.T, epx)
         return {'W1':dW1, 'W2':dW2}
 
-    def get_action(self, observation):        
-        # pickle.dump(self.model, open(self.model_file, 'wb'))
-        
+    def get_action(self, observation):
+        # if self.first:
+        #     pickle.dump(self.model, open(self.model_file, 'wb'))
+        #     prediction = np.array([0,0,0]) #used for initialization
+        #     self.first = False
+
+        #     self.grad_buffer = { k : np.zeros_like(v) for k,v in self.model.items() } # update buffers that add up gradients over a batch
+        #     self.rmsprop_cache = { k : np.zeros_like(v) for k,v in self.model.items() } # rmsprop memory
+
+
+        #     # another way to define a network
+        #     self.net = torch.nn.Sequential(
+        #             torch.nn.Linear(self.input_dim, 200),
+        #             torch.nn.LeakyReLU(),
+        #             torch.nn.Linear(200, 100),
+        #             torch.nn.LeakyReLU(),
+        #             torch.nn.Linear(100, self.output_dim),
+        #         ).to(self.train_device)
+
+        #     self.net.load_state_dict(torch.load(self.sup_model_file))
+
+        #     self.net.eval().to(self.train_device)
+
+        #     self.optimizer = torch.optim.Adam(self.net.parameters(), lr=0.01)
+        #     self.loss_func = torch.nn.MSELoss().to(self.train_device)  # this is for regression mean squared loss   
+        # else:
         my_obs = prepro(observation)
         my_obs = np.array(my_obs)
         my_obs = torch.Tensor(my_obs).to(self.train_device)
@@ -248,8 +272,8 @@ class Agent(object):
 
         #print("=========")
 
-        self.prev_prediction = prediction
         self.prev_prev_prediction = self.prev_prediction
+        self.prev_prediction = prediction
 
         # forward the policy network and sample an action from the returned probability
 
