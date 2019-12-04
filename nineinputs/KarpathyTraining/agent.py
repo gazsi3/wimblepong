@@ -29,15 +29,15 @@ class Agent(object):
     def __init__(self):
         self.H = 200  # number of hidden layer neurons
         # self.D = 100 * 100  # input dimensionality: 100x100 grid
-        self.D = 9  # input dimensionality: 100x100 grid
-        self.prev_prediction = None
+        self.D = 6  # input dimensionality: 100x100 grid
+        self.prev_x = None
         self.model = {}
         self.init_model()
         self.name = "6ComboDestroyer"
         self.rewards = []
-        self.model_file = "fresh_glie.p"
+        self.model_file = "start.p"
         self.reward_file = "running_rewards.p"
-        self.learning_rate = 1e-3 #suggested in git from blog
+        self.learning_rate = 1e-4
         self.gamma = 0.99
         self.decay_rate = 0.99 # decay factor for RMSProp leaky sum of grad^2
         self.xs,self.hs,self.dlogps,self.drs = [],[],[],[]
@@ -49,9 +49,8 @@ class Agent(object):
         self.rmsprop_cache = {}
         self.plot_rewards = []
         self.env = []
-        self.epsilon = 1.0
-        self.alpha = 2e5
-        self.min_epsilon = 0.1
+        self.epsilon = 1
+        self.alpha = 2000
         self.train_device = "cuda" if torch.cuda.is_available() else "cpu"
 
 
@@ -114,7 +113,7 @@ class Agent(object):
 
             #print ('resetting env. episode reward total was %f. running mean: %f' % (self.reward_sum, self.running_reward))
             y = np.array(self.plot_rewards)
-            start = 0
+            start = 50000
             grouping = 500
 
             y = y[start:]
@@ -209,8 +208,8 @@ class Agent(object):
         h = np.dot(self.model['W1'], x)
         h[h < 0] = 0  # ReLU nonlinearity
         logp = np.dot(self.model['W2'], h)
-        # p = sigmoid(logp)
         p = sigmoid(logp)
+
         # pickle.dump(self.model, open(self.model_file, 'wb'))
         # print("weights saved", self.episode_number)
 
@@ -224,45 +223,40 @@ class Agent(object):
         dW1 = np.dot(dh.T, epx)
         return {'W1':dW1, 'W2':dW2}
 
-    def get_action(self, observation):        
-        # pickle.dump(self.model, open(self.model_file, 'wb'))
-        
+    def get_action(self, observation):
+
         my_obs = prepro(observation)
         my_obs = np.array(my_obs)
         my_obs = torch.Tensor(my_obs).to(self.train_device)
 
         prediction = self.net(my_obs).to(self.train_device)
-        # prediction = np.array([0,0,0,0]) #used for initialization
         prediction = prediction.cpu()
         prediction = prediction.detach().numpy()
         prediction = np.delete(prediction,1)
 
         #print(prediction)
 
-        difference = prediction - self.prev_prediction if self.prev_prediction is not None else np.zeros(3)
-        self.prev_prediction = self.prev_prediction if self.prev_prediction is not None else np.zeros(3)
+        speeds = prediction - self.prev_x if self.prev_x is not None else np.zeros(int(self.D/2))
 
         #print(speeds)k45UsU(ds/tk/[K9
 
-        x = np.concatenate((prediction, self.prev_prediction, difference))
+        x = np.concatenate((prediction, speeds))
 
         #print(x)
 
         #print("=========")
 
-        self.prev_prediction = prediction
+        self.prev_x = prediction
 
         # forward the policy network and sample an action from the returned probability
 
         aprob, h = self.policy_forward(x)
         #action = 1 if np.random.uniform() < aprob else 2  # roll the dice
-        # self.epsilon = self.alpha / (self.alpha + self.episode_number)
-        # if self.epsilon < self.min_epsilon and np.random.random() < self.min_epsilon:
-        #     action = 1 + int(np.random.rand() * 2)
-        # elif np.random.random() < self.epsilon:
-        #     action = 1 + int(np.random.rand() * 2)
-        # else:
-        action = 1 if np.random.uniform() > aprob else 2  # roll the dice!
+        self.epsilon = self.alpha / (self.alpha + self.episode_number)
+        if np.random.random() < self.epsilon:
+            action = 1 + int(np.random.rand() * 2)
+        else:
+            action = 1 if 0.5 < aprob else 2
         
         self.xs.append(x)
         self.hs.append(h)
