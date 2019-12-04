@@ -19,8 +19,8 @@ import agent
 orig_wd = os.getcwd()
 os.chdir(args.dir1)
 agent1 = agent.Agent()
-# agent1.load_model()
-agent1.init_model()
+agent1.load_model()
+# agent1.init_model()
 os.chdir(orig_wd)
 del sys.path[0]
 
