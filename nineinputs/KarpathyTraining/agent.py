@@ -31,13 +31,14 @@ class Agent(object):
         # self.D = 100 * 100  # input dimensionality: 100x100 grid
         self.D = 9  # input dimensionality: 100x100 grid
         self.prev_prediction = None
+        self.prev_prev_prediction = None
         self.model = {}
         self.init_model()
         self.name = "6ComboDestroyer"
         self.rewards = []
         self.model_file = "fresh_glie.p"
         self.reward_file = "running_rewards.p"
-        self.learning_rate = 1e-3 #suggested in git from blog
+        self.learning_rate = 1e-4 
         self.gamma = 0.99
         self.decay_rate = 0.99 # decay factor for RMSProp leaky sum of grad^2
         self.xs,self.hs,self.dlogps,self.drs = [],[],[],[]
@@ -50,8 +51,6 @@ class Agent(object):
         self.plot_rewards = []
         self.env = []
         self.epsilon = 1.0
-        self.alpha = 2e5
-        self.min_epsilon = 0.1
         self.train_device = "cuda" if torch.cuda.is_available() else "cpu"
 
 
@@ -239,18 +238,18 @@ class Agent(object):
 
         #print(prediction)
 
-        difference = prediction - self.prev_prediction if self.prev_prediction is not None else np.zeros(3)
+        # difference = prediction - self.prev_prediction if self.prev_prediction is not None else np.zeros(3)
         self.prev_prediction = self.prev_prediction if self.prev_prediction is not None else np.zeros(3)
+        self.prev_prev_prediction = self.prev_prev_prediction if self.prev_prev_prediction is not None else np.zeros(3)
 
-        #print(speeds)k45UsU(ds/tk/[K9
-
-        x = np.concatenate((prediction, self.prev_prediction, difference))
+        x = np.concatenate((prediction, self.prev_prediction, self.prev_prev_prediction))
 
         #print(x)
 
         #print("=========")
 
         self.prev_prediction = prediction
+        self.prev_prev_prediction = self.prev_prediction
 
         # forward the policy network and sample an action from the returned probability
 
