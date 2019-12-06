@@ -1,0 +1,565 @@
+
+*** These modified files were found in JOE when it aborted on Fri Dec  6 13:23:15 2019
+*** JOE was aborted by UNIX signal 1
+
+*** File '* Shell 4 *'
+
+Type joehelp for editor shell commands
+
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents
+*** File '* Shell 3 *'
+
+Type joehelp for editor shell commands
+
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimblepong
+[1m[37m % [mjoe
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimblepong
+[1m[37m % 
+*** File '* Shell 2 *'
+
+Type joehelp for editor shell commands
+
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimblepong
+[1m[37m % [mexit
+
+*** File '(Unnamed)'
+
+*** File '* Shell 1 *'
+
+Type joehelp for editor shell commands
+
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimblepong
+[1m[37m % 
+*** File '/m/home/home9/97/kelders1/data/Documents/wimblepong/.git/COMMIT_EDITMSG'
+Merge branch 'master' of https://github.com/gazsi3/wimblepong
+
+# Conflicts:
+#	GLIE_fresh/fresh_glie.p
+#	GLIE_fresh/running_rewards.p
+#	GLIE_fresh/running_rewards_plot.png
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 1 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   KarpathyTraining/__pycache__/agent.cpython-37.pyc
+#	modified:   KarpathyTraining/agent.py
+#	deleted:    fresh_glie.p
+#	deleted:    running_rewards.p
+#	deleted:    running_rewards_plot.png
+#
+
+*** File '(Unnamed)'
+/m/home/home9/97/kelders1/unix/.gitconfig
+/m/home/home9/97/kelders1/unix/.gitconfig
+/m/home/home9/97/kelders1/unix/.gitconfig
+/m/home/home9/97/kelders1/data/Documents/wimblepong/.git/MERGE_MSG
+/m/home/home9/97/kelders1/data/Documents/wimblepong/.git/MERGE_MSG
+/m/home/home9/97/kelders1/data/Documents/wimblepong/.git/COMMIT_EDITMSG
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 2 *
+* Startup Log *
+* Shell 3 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 2 *
+
+*** File '* Startup Log *'
+Processing '/etc/joe/editorrc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/editorrc
+
+*** These modified files were found in JOE when it aborted on Fri Dec  6 13:23:15 2019
+*** JOE was aborted by UNIX signal 15
+
+*** These modified files were found in JOE when it aborted on Fri Dec  6 13:23:15 2019
+*** JOE was aborted by UNIX signal 15
+
+*** File '* Shell 2 *'
+
+*** These modified files were found in JOE when it aborted on Fri Dec  6 13:23:15 2019
+*** JOE was aborted by UNIX signal 15
+
+*** These modified files were found in JOE when it aborted on Fri Dec  6 13:23:15 2019
+*** JOE was aborted by UNIX signal 15
+
+Type joehelp for editor shell commands
+
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimblepong
+[1m[37m % [mexit
+
+*** File '(Unnamed)'
+
+*** File '* Shell 1 *'
+
+Type joehelp for editor shell commands
+
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimblepong
+[1m[37m % [mjoe
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimblepong
+[1m[37m % 
+*** File '/m/home/home9/97/kelders1/data/Documents/wimblepong/.git/COMMIT_EDITMSG'
+
+*** File '* Shell 4 *'
+
+*** File '* Shell 1 *'
+Merge branch 'master' of https://github.com/gazsi3/wimblepong
+
+# Conflicts:
+#	GLIE_fresh/fresh_glie.p
+#	GLIE_fresh/running_rewards.p
+#	GLIE_fresh/running_rewards_plot.png
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 1 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   KarpathyTraining/__pycache__/agent.cpython-37.pyc
+#	modified:   KarpathyTraining/agent.py
+#	deleted:    fresh_glie.p
+#	deleted:    running_rewards.p
+#	deleted:    running_rewards_plot.png
+#
+
+*** File '(Unnamed)'
+/m/home/home9/97/kelders1/unix/.gitconfig
+/m/home/home9/97/kelders1/unix/.gitconfig
+/m/home/home9/97/kelders1/unix/.gitconfig
+/m/home/home9/97/kelders1/data/Documents/wimblepong/.git/MERGE_MSG
+/m/home/home9/97/kelders1/data/Documents/wimblepong/.git/MERGE_MSG
+/m/home/home9/97/kelders1/data/Documents/wimblepong/.git/COMMIT_EDITMSG
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 2 *
+* Startup Log *
+* Shell 3 *
+
+*** File '* Startup Log *'
+Processing '/etc/joe/editorrc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/editorrc
+
+Type joehelp for editor shell commands
+
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents
+*** File '* Shell 3 *'
+
+Type joehelp for editor shell commands
+
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimblepong
+[1m[37m % [mjoe
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimblepong
+[1m[37m % 
+*** File '* Shell 2 *'
+
+Type joehelp for editor shell commands
+
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimblepong
+[1m[37m % 
+*** File '(Unnamed)'
+
+*** File '* Shell 1 *'
+
+Type joehelp for editor shell commands
+
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimblepong
+[1m[37m % 
+*** File '/m/home/home9/97/kelders1/data/Documents/wimblepong/.git/COMMIT_EDITMSG'
+Merge branch 'master' of https://github.com/gazsi3/wimblepong
+
+# Conflicts:
+#	GLIE_fresh/fresh_glie.p
+#	GLIE_fresh/running_rewards.p
+#	GLIE_fresh/running_rewards_plot.png
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 1 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   KarpathyTraining/__pycache__/agent.cpython-37.pyc
+#	modified:   KarpathyTraining/agent.py
+#	deleted:    fresh_glie.p
+#	deleted:    running_rewards.p
+#	deleted:    running_rewards_plot.png
+#
+
+*** File '(Unnamed)'
+/m/home/home9/97/kelders1/unix/.gitconfig
+/m/home/home9/97/kelders1/unix/.gitconfig
+/m/home/home9/97/kelders1/unix/.gitconfig
+/m/home/home9/97/kelders1/data/Documents/wimblepong/.git/MERGE_MSG
+/m/home/home9/97/kelders1/data/Documents/wimblepong/.git/MERGE_MSG
+/m/home/home9/97/kelders1/data/Documents/wimblepong/.git/COMMIT_EDITMSG
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 2 *
+* Startup Log *
+* Shell 3 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 2 *
+* Startup Log *
+* Shell 2 *
+* Startup Log *
+* Shell 3 *
+* Startup Log *
+* Shell 4 *
+
+Type joehelp for editor shell commands
+
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimble
+*** File '/m/home/home9/97/kelders1/data/Documents/wimblepong/.git/COMMIT_EDITMSG'
+Merge branch 'master' of https://github.com/gazsi3/wimblepong
+
+# Conflicts:
+#	GLIE_fresh/fresh_glie.p
+#	GLIE_fresh/running_rewards.p
+#	GLIE_fresh/running_rewards_plot.png
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 1 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   KarpathyTraining/__pycache__/agent.cpython-37.pyc
+#	modified:   KarpathyTraining/agent.py
+#	deleted:    fresh_glie.p
+#	deleted:    running_rewards.p
+#	deleted:    running_rewards_plot.png
+#
+
+*** File '(Unnamed)'
+/m/home/home9/97/kelders1/unix/.gitconfig
+/m/home/home9/97/kelders1/unix/.gitconfig
+/m/home/home9/97/kelders1/unix/.gitconfig
+/m/home/home9/97/kelders1/data/Documents/wimblepong/.git/MERGE_MSG
+/m/home/home9/97/kelders1/data/Documents/wimblepong/.git/MERGE_MSG
+/m/home/home9/97/kelders1/data/Documents/wimblepong/.git/COMMIT_EDITMSG
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+
+*** File '* Startup Log *'
+Processing '/etc/joe/editorrc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/editorrc
+
+*** File '* Startup Log *'
+Processing '/etc/joe/editorrc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/editorrc
+
+*** File '* Shell 4 *'
+
+Type joehelp for editor shell commands
+
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents
+*** File '* Shell 3 *'
+
+Type joehelp for editor shell commands
+
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimblepong
+[1m[37m % [mjoe
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimblepong
+[1m[37m % 
+*** File '* Shell 2 *'
+
+Type joehelp for editor shell commands
+
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimblepong
+[1m[37m % [mexit
+
+*** File '(Unnamed)'
+
+*** File '* Shell 1 *'
+
+Type joehelp for editor shell commands
+
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimblepong
+[1m[37m % [mkj
+zsh: command not found: kj
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimblepong
+[1m[37m % [mkx
+zsh: command not found: kx
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimblepong
+[1m[37m % [mKX
+zsh: command not found: KX
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimblepong
+[1m[37m % [mX
+/usr/lib/xorg/Xorg.wrap: Only console users are allowed to run the X server
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimblepong
+[1m[37m % [mEXIT
+zsh: command not found: EXIT
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimblepong
+[1m[37m % [mQUIT
+zsh: command not found: QUIT
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimblepong
+[1m[37m % [mquit
+zsh: command not found: quit
+[44mkelders1@remorse[m [1m[32m/m/home/home9/97/kelders1/data/Documents/wimblepong
+[1m[37m % [mexit
+exit
+
+*** File '/m/home/home9/97/kelders1/data/Documents/wimblepong/.git/COMMIT_EDITMSG'
+Merge branch 'master' of https://github.com/gazsi3/wimblepong
+
+# Conflicts:
+#	GLIE_fresh/fresh_glie.p
+#	GLIE_fresh/running_rewards.p
+#	GLIE_fresh/running_rewards_plot.png
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 1 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   KarpathyTraining/__pycache__/agent.cpython-37.pyc
+#	modified:   KarpathyTraining/agent.py
+#	deleted:    fresh_glie.p
+#	deleted:    running_rewards.p
+#	deleted:    running_rewards_plot.png
+#
+
+*** File '(Unnamed)'
+/m/home/home9/97/kelders1/unix/.gitconfig
+/m/home/home9/97/kelders1/unix/.gitconfig
+/m/home/home9/97/kelders1/unix/.gitconfig
+/m/home/home9/97/kelders1/data/Documents/wimblepong/.git/MERGE_MSG
+/m/home/home9/97/kelders1/data/Documents/wimblepong/.git/MERGE_MSG
+/m/home/home9/97/kelders1/data/Documents/wimblepong/.git/COMMIT_EDITMSG
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 2 *
+* Startup Log *
+* Shell 3 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 4 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+* Startup Log *
+* Shell 1 *
+
+*** File '* Startup Log *'
+Processing '/etc/joe/editorrc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/editorrc
