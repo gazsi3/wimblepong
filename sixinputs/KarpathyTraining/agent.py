@@ -35,7 +35,7 @@ class Agent(object):
         self.init_model()
         self.name = "6ComboDestroyer"
         self.rewards = []
-        self.model_file = "start.p"
+        self.model_file = "six2.p"
         self.reward_file = "running_rewards.p"
         self.learning_rate = 1e-4
         self.gamma = 0.99
@@ -52,6 +52,8 @@ class Agent(object):
         self.epsilon = 1
         self.alpha = 2000
         self.train_device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.action_count = 0
+        self.diffs = []
 
 
         #supervised model params
@@ -224,6 +226,7 @@ class Agent(object):
         return {'W1':dW1, 'W2':dW2}
 
     def get_action(self, observation):
+        self.action_count += 1
 
         my_obs = prepro(observation)
         my_obs = np.array(my_obs)
@@ -233,6 +236,18 @@ class Agent(object):
         prediction = prediction.cpu()
         prediction = prediction.detach().numpy()
         prediction = np.delete(prediction,1)
+
+        # debugging with real values
+        real = np.array([self.env.player1.y, self.env.ball.x, self.env.ball.y])
+
+        self.diffs.append(prediction - real)
+        if self.action_count % 1000 == 0:
+            # print(np.mean(self.diffs, axis=0))
+            # print(len(self.diffs))
+            self.diffs = []
+
+
+        # prediction = real
 
         #print(prediction)
 
@@ -252,11 +267,15 @@ class Agent(object):
 
         aprob, h = self.policy_forward(x)
         #action = 1 if np.random.uniform() < aprob else 2  # roll the dice
-        self.epsilon = self.alpha / (self.alpha + self.episode_number)
-        if np.random.random() < self.epsilon:
-            action = 1 + int(np.random.rand() * 2)
-        else:
-            action = 1 if 0.5 < aprob else 2
+        # self.epsilon = self.alpha / (self.alpha + self.episode_number)
+        # if np.random.random() < self.epsilon:
+        #     action = 1 + int(np.random.rand() * 2)
+        # else:
+        #     action = 1 if 0.5 < aprob else 2
+
+        
+        action = 1 if 0.5 < aprob else 2  
+        
         
         self.xs.append(x)
         self.hs.append(h)
